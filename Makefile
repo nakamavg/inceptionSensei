@@ -19,6 +19,7 @@ clean: down
 	@docker system prune -a
 
 fclean: clean
+	@docker volume rm -f inception_wordpress_data inception_mariadb_data 2>/dev/null || true
 	@sudo rm -rf $(shell pwd)/data/wordpress/*
 	@sudo rm -rf $(shell pwd)/data/mariadb/*
 	@docker system prune -a --volumes
