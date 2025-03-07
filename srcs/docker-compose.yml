@@ -6,8 +6,10 @@ services:
     container_name: nginx
     ports:
       - "443:443"
+      - "80:80"
     volumes:
       - wordpress_data:/var/www/html
+      - ./data/wordpress:/var/www/html
     depends_on:
       - wordpress
     restart: always
@@ -21,6 +23,7 @@ services:
     container_name: wordpress
     volumes:
       - wordpress_data:/var/www/html
+      - ./data/wordpress:/var/www/html
     depends_on:
       - mariadb
     restart: always
@@ -34,6 +37,7 @@ services:
     container_name: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
+      - ./requirements/mariadb/tools:/docker-entrypoint-initdb.d
     restart: always
     networks:
       - inception
@@ -45,13 +49,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/${USER}/data/wordpress
+      device: ./data/wordpress
       o: bind
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/${USER}/data/mariadb
+      device: ./data/mariadb
       o: bind
 
 networks:

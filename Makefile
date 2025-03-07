@@ -1,8 +1,8 @@
 NAME = inception
 
 all: 
-	@mkdir -p /home/$(USER)/data/wordpress
-	@mkdir -p /home/$(USER)/data/mariadb
+	@mkdir -p $(shell pwd)/data/wordpress
+	@mkdir -p $(shell pwd)/data/mariadb
 	@docker-compose -f srcs/docker-compose.yml up -d --build
 
 build:
@@ -18,8 +18,8 @@ clean: down
 	@docker system prune -a
 
 fclean: clean
-	@sudo rm -rf /home/$(USER)/data/wordpress/*
-	@sudo rm -rf /home/$(USER)/data/mariadb/*
+	@sudo rm -rf $(shell pwd)/data/wordpress/*
+	@sudo rm -rf $(shell pwd)/data/mariadb/*
 	@docker system prune -a --volumes
 
 .PHONY: all build down re clean fclean
