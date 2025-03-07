@@ -47,13 +47,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/wordpress
+      device: ../data/wordpress
       o: bind
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/mariadb
+      device: ../data/mariadb
       o: bind
 
 networks:
