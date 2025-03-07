@@ -9,7 +9,6 @@ services:
       - "80:80"
     volumes:
       - wordpress_data:/var/www/html
-      - ./data/wordpress:/var/www/html
     depends_on:
       - wordpress
     restart: always
@@ -23,7 +22,6 @@ services:
     container_name: wordpress
     volumes:
       - wordpress_data:/var/www/html
-      - ./data/wordpress:/var/www/html
     depends_on:
       - mariadb
     restart: always
@@ -49,13 +47,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./data/wordpress
+      device: ${PWD}/data/wordpress
       o: bind
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: ./data/mariadb
+      device: ${PWD}/data/mariadb
       o: bind
 
 networks:

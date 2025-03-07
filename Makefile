@@ -3,6 +3,7 @@ NAME = inception
 all: 
 	@mkdir -p $(shell pwd)/data/wordpress
 	@mkdir -p $(shell pwd)/data/mariadb
+	@chmod -R 777 $(shell pwd)/data
 	@docker-compose -f srcs/docker-compose.yml up -d --build
 
 build:
